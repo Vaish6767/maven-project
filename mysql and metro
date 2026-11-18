@@ -1,0 +1,35 @@
+docker pull tomcat:10.1-jdk17
+  docker pull mysql:8.0
+    docker compose.yml
+    
+services:
+
+  mysql:
+    image: mysql:8.0
+    container_name: metro-mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: root123
+      MYSQL_DATABASE: metrodb
+    ports:
+      - "3307:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - metro-network
+
+  app:
+    build: .
+    container_name: metro-app
+    ports:
+      - "8080:8080"
+    depends_on:
+      - mysql
+    networks:
+      - metro-network
+
+volumes:
+  mysql-data:
+
+networks:
+  metro-network:
+    driver: bridge
