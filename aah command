@@ -1,1 +1,8 @@
-ssh -i library-key.pem ubuntu@98.93.86.110
+ssh -i "library-key.pem" ubuntu@98.93.86.110
+sudo apt-get install docker.io
+
+sudo apt install git
+
+sudo apt install nano
+	docker build –t <imagename> .(dot)
+docker  run –d  --name app-demo –p 6060:8080 <image name>
