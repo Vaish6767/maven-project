@@ -1,0 +1,72 @@
+app.py
+from flask import Flask
+
+app = Flask(__name__)
+
+@app.route('/')
+def home():
+    return "Welcome to Restaurant Food Ordering API!"
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)
+
+
+
+
+    dockerfle
+    FROM python:3.10
+
+WORKDIR /app
+
+COPY requirements.txt .
+
+RUN pip install -r requirements.txt
+
+COPY app.py .
+
+EXPOSE 5000
+
+
+
+
+craete ngminx
+<html>
+<head>
+    <title>Restaurant Website</title>
+</head>
+<body>
+    <h1>Welcome to Restaurant Food Ordering System</h1>
+    <p>Order your favourite food online!</p>
+</body>
+</html>
+
+CMD ["python", "app.py"]
+
+
+docker compose
+
+services:
+
+  flask:
+    build: .
+    container_name: flask-api
+    ports:
+      - "5000:5000"
+    networks:
+      - restaurant-network
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx-server
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx/index.html:/usr/share/nginx/html/index.html:ro
+    depends_on:
+      - flask
+    networks:
+      - restaurant-network
+
+networks:
+  restaurant-network:
+    driver: bridge
