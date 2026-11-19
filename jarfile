@@ -1,0 +1,19 @@
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY target/library-management.jar app.jar
+
+EXPOSE 8080
+
+CMD ["java", "-jar", "app.jar"]
+
+
+  Order	Command	Purpose
+1	mvn clean package	Build JAR
+2	docker build -t library-app .	Build image
+3	docker images	List images
+4	docker run -d -p 8080:8080 --name library-container library-app	Run container
+5	docker ps	Check container
+6	docker logs library-container	View output
+7	docker stop library-container	Stop container
