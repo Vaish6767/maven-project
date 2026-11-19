@@ -1,0 +1,32 @@
+# View all resources
+kubectl get all
+
+# View pods
+kubectl get pods
+
+# View deployments
+kubectl get deployments
+
+# View services
+kubectl get services
+
+# Describe a pod
+kubectl describe pod POD_NAME
+
+# View application logs
+kubectl logs POD_NAME
+
+# Scale application to 3 replicas
+kubectl scale deployment library-deployment --replicas=3
+
+# Check scaling
+kubectl get pods
+
+# Delete deployment
+kubectl delete deployment library-deployment
+
+# Delete service
+kubectl delete service library-service
+
+# Stop Minikube
+minikube stop
